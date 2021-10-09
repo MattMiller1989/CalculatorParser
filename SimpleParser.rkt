@@ -3,7 +3,7 @@
 
 (define (parse inputFile)
   
-  (scan(remove-white-space (scan-prep inputFile) ))
+  (display (scan(remove-white-space (scan-prep inputFile) )))
   )
 
 (define (scan-prep inputFile)
@@ -21,14 +21,13 @@
 (define (scan element-list)
   
   (if (string=? "$$" (first element-list))
-      (write "Done Scanning" )
-      (process element-list)
-  ))
+       "\nDone Scanning!!!!!!" 
+      (string-append (process (first element-list)) " " (scan (rest element-list))))
+  )
 
-(define (process element-list)
-  (display (first element-list))
-  (display " ")
-  (scan (rest element-list))
+(define (process element)
+  
+   element
   )
   
   
