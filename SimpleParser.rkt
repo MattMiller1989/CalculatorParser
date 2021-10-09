@@ -20,8 +20,8 @@
 
 (define (scan element-list)
   
-  (if (empty? element-list)
-      (write "Done Scanning \n" )
+  (if (string=? "$$" (first element-list))
+      (write "Done Scanning" )
       (process element-list)
   ))
 
