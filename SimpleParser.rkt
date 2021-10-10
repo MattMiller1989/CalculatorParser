@@ -29,6 +29,8 @@
   (cond
     [(string=? "$$" (first element-list)) "\nDone Scanning\n"]
     [(string=? "newLine" (first element-list)) (scan (rest element-list) (+ line 1))]
+    ;[else (string-append (process (first element-list) line) " " (scan (rest element-list) line))]
+    [(string-contains? (process (first element-list) line) "Error") (process (first element-list) line)]
     [else (string-append (process (first element-list) line) " " (scan (rest element-list) line))]
   ))
 
@@ -42,7 +44,7 @@
     [(is-r-paren? element) "rParen"]
     [(is-mult-op? element) "multOp"]
     [(is-add-op? element) "addOp"]   
-    [else (string-append "Error on line " (~a line))]
+    [else (string-append "\nError on line " (~a line))]
   ))
 
 (define (is-read? element)
