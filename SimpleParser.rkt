@@ -1,12 +1,6 @@
 #lang racket
 
 (require racket/trace)
-;(define file1 "C:/Users/Matt/Desktop/Fall21/CS441/ParserProject/ParserInputFiles/Input01.txt" )
-;(define file2 "C:/Users/Matt/Desktop/Fall21/CS441/ParserProject/ParserInputFiles/Input02.txt" )
-;(define file3 "C:/Users/Matt/Desktop/Fall21/CS441/ParserProject/ParserInputFiles/Input03.txt" )
-;(define file4 "C:/Users/Matt/Desktop/Fall21/CS441/ParserProject/ParserInputFiles/Input04.txt" )
-;(define file5 "C:/Users/Matt/Desktop/Fall21/CS441/ParserProject/ParserInputFiles/Input05.txt" )
-;(define file6 "C:/Users/Matt/Desktop/Fall21/CS441/ParserProject/ParserInputFiles/Input06.txt" )
 
 (define file1 "Input01.txt" )
 (define file2 "Input02.txt" )
@@ -47,7 +41,7 @@
   (cond
     [(string=? "$$" (first element-list)) "$$\nDone-Scanning\n"]
     [(string=? "newLine" (first element-list)) (string-append "newLine" " " (scan (rest element-list) (+ line 1)))]
-    ;[else (string-append (process (first element-list) line) " " (scan (rest element-list) line))]
+    
     [(string-contains? (process (first element-list) line) "Error") (process (first element-list) line)]
     [else (string-append (process (first element-list) line) " " (scan (rest element-list) line))]
     ))
@@ -227,8 +221,7 @@
 (define (match token-stream token )
   
   (cond
-    [(string=? (first token-stream) "ERROR") '("ERROR",token)]
-   ; [(string=? "$$" token) (exit)]
+    [(string=? (first token-stream) "ERROR") '("ERROR",token)]   
     [(string=? (first token-stream) token) (rest token-stream)]    
     [else (error "ERROR ON LINE " )]
     ))
